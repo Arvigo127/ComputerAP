@@ -2,18 +2,21 @@ package main;
  
 public class Time {
 	public static void main(String[] args) {
-		long date = System.currentTimeMillis(); 
+		long millisecond_time = System.currentTimeMillis(); 
 		
-		long time_elapsed = date/1000; 
+		long seconds_elapsed = millisecond_time/1000; 
 
-		long hour_in_seconds = 1*60*60; 
-		long day_in_seconds = hour_in_seconds * 24; 
-		long year_in_seconds = day_in_seconds * 364; 
+		long minutes_elapsed = seconds_elapsed/60; 
+		long hours_elapsed = minutes_elapsed/60;
+		long minutes_today = minutes_elapsed%60;  
+		long hours_today = (hours_elapsed%60)-4; 
 		
-		long year_elapsed = time_elapsed/year_in_seconds;
-		System.out.println("the year is " + (year_elapsed + 1970)); 
+		if (hours_today > 12) {
+			System.out.println((hours_today-12) + ":" + minutes_today + "PM"); 
+		} else {
+			System.out.println(hours_today + ":" + minutes_today + "AM"); 
+		}
+		System.out.println(); 
 		
-		long year_remainder = time_elapsed-(year_elapsed * year_in_seconds);  
-		System.out.println(year_remainder/day_in_seconds); 
 	}
 }
