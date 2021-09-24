@@ -7,20 +7,15 @@ public class LinearRegression {
 		y = y_in; 
 	}
 	
-	public double LR() {
+	public String LR() {
 		double slope_initial = 1;
 		double y_inter_initial = 0; 
-		
-		boolean sign_change_flag = false;
 		double places = 1; 
-		double end_condition = 1; 
+		double tmp_sum = 0; 
 		
-		while (end_condition < 5) {
+		while (places >= 0.0001) {
 			double sum_distance = 0; 
-			if (sign_change_flag) {
-				places = places/10; 
-				sign_change_flag = false; 
-			}
+
 		
 			for (int i=0; i<x.length; i++) {
 				double compare_point = y[i] - find_point(slope_initial, y_inter_initial, x[i]); 
@@ -28,23 +23,27 @@ public class LinearRegression {
 				sum_distance += (preserve_sign(compare_point))*Math.pow(compare_point, 2); 
 			}
 			
+			
+			if ((tmp_sum != 0) && (preserve_sign(sum_distance) != preserve_sign(tmp_sum))) {
+					places = places/10; 
+					
+				}
+			
 			if (sum_distance == 0) {
-				return slope_initial; 
+				return ("y=" + String.valueOf(slope_initial)+ "x"); 
 			} else if (sum_distance > 0) {
 				slope_initial += places; 
-				System.out.print(sum_distance);
-				System.out.print(" added "); 
-				System.out.println(slope_initial); 
 			} else {
 				slope_initial -= places;
-				System.out.print(sum_distance);
-				System.out.print(" subtracted "); 
-				System.out.println(slope_initial); 
 			}
 			
-			end_condition++; 
+
+			tmp_sum = sum_distance; 
 		}
-		return slope_initial; 
+		
+		String return_string = "y=" + String.valueOf(slope_initial) + "x + 0"; 
+		String format = String.format("y=%f.4x+0", slope_initial); 
+		return format; 
 	}
 	
 	
