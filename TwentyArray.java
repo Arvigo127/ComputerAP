@@ -38,6 +38,7 @@ public class TwentyArray {
 		
 	}
 	
+	//O(n)
 	public static int sortMax(int[] k_array) {
 		int max = 0; 
 		for (int i : k_array) {
@@ -49,6 +50,7 @@ public class TwentyArray {
 		return max; 
 	}
 	
+	//O(n)
 	public static int sortMin(int[] k_array) {
 		int max = sortMax(k_array); 
 		int min = 0; 
@@ -61,10 +63,12 @@ public class TwentyArray {
 		return min; 
 	}
 	
+	//O(1)
 	public static int randomInt(int lower, int upper) {
 		return (int) ((Math.random() * (upper - lower)) + lower);
 	}
 	
+	//O(n)
 	public static boolean isPrime(int i) {
 		double sqrt = Math.sqrt(i);
 		boolean prime = true; 
@@ -80,4 +84,3 @@ public class TwentyArray {
 }
 
 
-//20 random ints in an array between a range, find max/min/prime

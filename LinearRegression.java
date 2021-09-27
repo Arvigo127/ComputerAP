@@ -41,7 +41,8 @@ public class LinearRegression {
 			tmp_sum = sum_distance; 
 		}
 		
-		String return_string = "y=" + String.valueOf(slope_initial) + "x + 0"; 
+		
+
 		String format = String.format("y=%f.4x+0", slope_initial); 
 		return format; 
 	}
