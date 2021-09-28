@@ -24,6 +24,7 @@ public class Change {
 		System.out.println(change/5 + " Nickels"); 
 		change = change%5;
 		
+		
 		System.out.println(change + " Pennies"); 
 		
 		
