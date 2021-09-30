@@ -23,6 +23,7 @@ public class Gooey {
 			printScreen(x, y); 
 			Thread.sleep(sleep_time);
 		}
+		 
 		
 	}
 	
