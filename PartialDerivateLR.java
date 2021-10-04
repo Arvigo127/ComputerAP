@@ -3,14 +3,15 @@ package main;
 public class PartialDerivateLR {
 	public static void main(String[] args) {
 		double[] data_x = {1,2,3};
-		double[] data_y = {4.5,7,9.5}; 
+		double[] data_y = {13,29,45}; 
 		int n = data_x.length;
 		double lr = 0.0089; 
 		double m = 0; 
 		double b = 0; 
-		int iterations = 3000; 
+		int iterations = 10000; 
 		System.out.println("started code"); 
 		
+		//O(n^2)
 		for (int i = 1; i <= iterations; i++) {
 			 
 			double sum_m = 0;
