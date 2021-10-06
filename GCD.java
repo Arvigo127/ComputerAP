@@ -1,10 +1,10 @@
 package main;
 
-import java.util.Scanner;
+
 
 public class GCD {
     public static void main(String[] args) {
-        int num1 = 55, num2 = 121, gcd = 1;
+        int num1 = 16, num2 = 24, gcd = 1;
         for(int i = 1; i <= num1 && i <= num2; i++)
         {
             if(num1%i==0 && num2%i==0)
@@ -12,5 +12,8 @@ public class GCD {
         }
 
         System.out.printf("GCD of %d and %d is: %d", num1, num2, gcd);
+        
+
+
     }
 }
