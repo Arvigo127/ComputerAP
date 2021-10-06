@@ -6,7 +6,7 @@ public class PIApprox {
 		double operand = 1; 
 		double pi_approx = 0.0; 
 		
-		for (int i = 0; i <= 1000000; i++) {
+		for (int i = 0; i <= 2000000000; i++) {
 			pi_approx += 4*(operand*(1/denom));
 			operand = operand * -1; 
 			denom += 2; 

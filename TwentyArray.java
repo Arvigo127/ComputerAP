@@ -1,7 +1,10 @@
 package main;
 
+
 import java.util.Arrays;
 import java.util.Scanner;
+
+
 
 
 public class TwentyArray {
@@ -20,8 +23,8 @@ public class TwentyArray {
 		
 		System.out.println(Arrays.toString(myArrary));
 		
-		System.out.println("Max " + sortMax(myArrary)); 
-		System.out.println("Min " + sortMin(myArrary)); 
+		System.out.println(String.format("Max %s at index %s", sortMax(myArrary)[0], sortMax(myArrary)[1])); 
+		System.out.println(String.format("Min %s at index %s", sortMin(myArrary)[0], sortMin(myArrary)[1])); 
 		
 		for (int i : myArrary) {
 			if (isPrime(i)) {
@@ -39,33 +42,35 @@ public class TwentyArray {
 	}
 	
 	//O(n)
-	public static int sortMax(int[] k_array) {
-		int max = 0; 
-		for (int i : k_array) {
-			if (i > max) {
-				max = i; 
+	public static int[] sortMax(int[] k_array) {
+		int[] returns = {0,0}; 
+		for (int i=0; i<k_array.length; i++) {
+			if (k_array[i] > returns[0]) {
+				returns[0] = k_array[i];
+				returns[1] = i; 
 			}
 		}
 		
-		return max; 
+		return returns; 
 	}
 	
 	//O(n)
-	public static int sortMin(int[] k_array) {
-		int max = sortMax(k_array); 
-		int min = 0; 
-		for (int i: k_array) {
-			if (i < max) {
-				min = i; 
-				max = i; 
+	public static int[] sortMin(int[] k_array) {
+		int max = sortMax(k_array)[0]; 
+		int[] returns = {0,0};
+		for (int i=0; i<k_array.length; i++) {
+			if (k_array[i] < max) {
+				returns[0] = k_array[i]; 
+				max = k_array[i];
+				returns[1] = i; 
 			}
 		}
-		return min; 
+		return returns; 
 	}
 	
 	//O(1)
 	public static int randomInt(int lower, int upper) {
-		return (int) ((Math.random() * (upper - lower)) + lower);
+		return (int) ((Math.random() * (upper - lower+1)) + lower);
 	}
 	
 	//O(n)

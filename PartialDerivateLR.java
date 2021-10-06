@@ -8,8 +8,10 @@ public class PartialDerivateLR {
 		double lr = 0.0089; 
 		double m = 0; 
 		double b = 0; 
-		int iterations = 10000; 
+		int iterations = 1000; 
 		System.out.println("started code"); 
+		
+		 
 		
 		//O(n^2)
 		for (int i = 1; i <= iterations; i++) {
