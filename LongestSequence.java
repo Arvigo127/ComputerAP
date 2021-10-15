@@ -1,37 +1,64 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class LongestSequence {
 	public static void main(String[] args) {
 		Scanner keyboard = new Scanner(System.in);
+
+		
+		int[] sequence = {2, 15, 4, 20, 13, 6, 0, 2, 2, 2, 19, 13, 19, 6, 2, 2, 14, 4, 15, 6};//new int[20]; 
+		
+		//for(int i = 0; i<sequence.length; i++) {
+		//	sequence[i] = randomInt(0,20); 
+		//}
+		
+		System.out.println(Arrays.toString(sequence)); 
+		
 		System.out.println("What number to look for?"); 
 		int num = keyboard.nextInt(); 
 		
-		int[] sequence = new int[20]; 
-		
-		for(int i = 0; i<sequence.length; i++) {
-			sequence[i] = randomInt(0,20); 
-		}
-		
 		int longest = seqLength(sequence, num); 
 		
-		System.out.println(longest); 
+
+		System.out.println(String.format("The longest string of %s is %s long.", num, longest+1)); 
 		keyboard.close();
 	}
 	
 	public static int seqLength(int[] c, int num) {
-		int sequence = 0;
-		int last = c[0];
+
+		boolean isin = false;
+		int sequence = 0; 
 		
-		for(int i = 1; i<c.length; i++) {
-			if(c[i] == last) {
-				sequence++;
+		ArrayList<Integer> sequences = new ArrayList<Integer>(); 
+		
+		for(int z:c) {
+			if(z==num) {
+				isin = true; 
 			}
-			last = c[i];
 		}
 		
-		return sequence; 
+		if (!isin) {
+			return -1; 
+		}
+		
+		for(int i = 1; i<c.length; i++) {
+			
+			if(c[i] == c[i-1] && c[i] == num) {
+				
+				sequence++;
+				System.out.println(String.format("%s at index %s matches %s at index %s, current sequence is %s", c[i], i, c[i-1], i-1, sequence)); 
+			} if(c[i] != num && sequence !=0 && c[i-1] == num) {
+				sequences.add(sequence); 
+				sequence = 0; 
+			}
+			
+		}
+		
+		return Collections.max(sequences); 
 	}
 	
 	public static int randomInt(int lower, int upper) {
