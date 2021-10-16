@@ -2,12 +2,30 @@ package main;
 
 import java.util.Scanner;
 
+import main.PyList; 
+
 public class AdditionQuiz {
 	public static void main(String[] args) {
 		String time = String.valueOf(System.currentTimeMillis()); 
 				
 		int num1 = Integer.valueOf(String.valueOf(time.charAt(9))); 
 		int num2 = Integer.valueOf(String.valueOf(time.charAt(10)));
+		
+		PyList list = new PyList(0);
+		
+		list.add(3.0);
+		list.add(23.0);
+		list.add(2.0);
+		list.add(1);
+		list.add(3.0);
+		
+		System.out.println(list.print()); 
+		System.out.println(list.max());
+		System.out.println(list.min()); 
+		
+		list.removeByIndex(7); 
+		
+		System.out.println(list.print());
 		
 		Scanner keyboard = new Scanner(System.in);
 		
