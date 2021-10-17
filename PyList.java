@@ -7,7 +7,7 @@ package main;
  *
  */
 
-public class PyList {
+public class PyList{
 	public static double[] list; 
 	
 	public PyList(int size) {
@@ -75,13 +75,8 @@ public class PyList {
 	
 	//lot of redundant for loops, but what works works
 	public void removeByValue(double value) {
-		int sizeToReduce = 0; 
+		int sizeToReduce = count(value); 
 		
-		for(double x: list) {
-			if(x==value) {
-				sizeToReduce++; 
-			}
-		}
 		
 		if(sizeToReduce ==0) {
 			return; 
@@ -126,4 +121,20 @@ public class PyList {
 		}
 		return min; 
 	}
+	
+	public int count(double a) {
+		int count = 0; 
+		
+		for(double x: list) {
+			if(x==a) {
+				count++; 
+			}
+		}
+		return count; 
+	}
+	
+	public double index(int a) {
+		return list[a]; 
+	}
+	
 }

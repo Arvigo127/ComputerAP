@@ -22,8 +22,9 @@ public class AdditionQuiz {
 		System.out.println(list.print()); 
 		System.out.println(list.max());
 		System.out.println(list.min()); 
+		System.out.println(list.index(0)); 
 		
-		list.removeByIndex(7); 
+		list.removeByIndex(4); 
 		
 		System.out.println(list.print());
 		
