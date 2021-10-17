@@ -21,7 +21,6 @@ public class AdditionQuiz {
 		
 		
 		
-		
 		System.out.println(list.print()); 
 		System.out.println(list.max());
 		System.out.println(list.min()); 

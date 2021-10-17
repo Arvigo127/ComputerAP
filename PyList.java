@@ -105,6 +105,10 @@ public class PyList{
 	}
 	
 	public double max(double[] input) {
+		if(input.length == 0) {
+			return 0; 
+		}
+		
 		double max = input[0];
 		
 		for(double x: input) {
@@ -120,6 +124,9 @@ public class PyList{
 	}
 	
 	public double min(double[] input) {
+		if(input.length == 0) {
+			return 0;
+		}
 		double min = input[0];
 		
 		for(double x:input) {
