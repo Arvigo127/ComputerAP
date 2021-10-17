@@ -8,7 +8,7 @@ package main;
  */
 
 public class PyList{
-	public static double[] list; 
+	private static double[] list; 
 	
 	public PyList(int size) {
 		if (size < 0)
@@ -20,18 +20,22 @@ public class PyList{
 		return list; 
 	}
 	
-	public String print() {
+	public String print(double[] input) {
 		String result = "["; 
 		
-		for(int i = 0; i<list.length; i++) {
-			result = result.concat(String.valueOf(list[i])); 
+		for(int i = 0; i<input.length; i++) {
+			result = result.concat(String.valueOf(input[i])); 
 			
-			if(i != list.length-1) {
+			if(i != input.length-1) {
 				result = result.concat(", "); 
 			}
 		}
 		result = result.concat("]"); 
 		return result; 
+	}
+	
+	public String print() {
+		return print(list); 
 	}
 	
 	public void add(double a) {
@@ -100,10 +104,10 @@ public class PyList{
 		}
 	}
 	
-	public double max() {
-		double max = list[0];
+	public double max(double[] input) {
+		double max = input[0];
 		
-		for(double x: list) {
+		for(double x: input) {
 			if(x>max) {
 				max = x; 
 			}
@@ -111,15 +115,23 @@ public class PyList{
 		return max; 
 	}
 	
-	public double min() {
-		double min = list[0];
+	public double max() {
+		return max(list); 
+	}
+	
+	public double min(double[] input) {
+		double min = input[0];
 		
-		for(double x:list) {
+		for(double x:input) {
 			if(x<min) {
 				min = x; 
 			}
 		}
 		return min; 
+	}
+	
+	public double min() {
+		return min(list); 
 	}
 	
 	public int count(double a) {

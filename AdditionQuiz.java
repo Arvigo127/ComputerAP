@@ -19,6 +19,9 @@ public class AdditionQuiz {
 		list.add(1);
 		list.add(3.0);
 		
+		
+		
+		
 		System.out.println(list.print()); 
 		System.out.println(list.max());
 		System.out.println(list.min()); 
