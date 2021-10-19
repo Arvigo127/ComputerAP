@@ -19,14 +19,15 @@ public class AdditionQuiz {
 		list.add(1);
 		list.add(3.0);
 		
-		
+		System.out.println(list.index(2)); 
+		 
 		
 		System.out.println(list.print()); 
 		System.out.println(list.max());
 		System.out.println(list.min()); 
 		System.out.println(list.index(0)); 
 		
-		list.removeByIndex(4); 
+		list.removeByValue(3);; 
 		
 		System.out.println(list.print());
 		

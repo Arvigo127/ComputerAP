@@ -9,11 +9,11 @@ public class LongestSequence {
 		Scanner keyboard = new Scanner(System.in);
 
 		
-		int[] sequence = new int[20]; 
-		
-		for(int i = 0; i<sequence.length; i++) {
-			sequence[i] = randomInt(0,20); 
-		}
+		//int[] sequence = new int[20]; 
+		int[] sequence = {13, 5, 3, 3, 15, 3, 3, 3, 14, 3, 3, 3, 3, 8, 7, 9, 14, 16, 8, 17};
+		//for(int i = 0; i<sequence.length; i++) {
+		//	sequence[i] = randomInt(0,20); 
+		//}
 		
 		System.out.println(Arrays.toString(sequence)); 
 		
@@ -23,7 +23,7 @@ public class LongestSequence {
 		int longest = (int) seqLength(sequence, num); 
 		
 
-		System.out.println(String.format("The longest string of %s is %s long.", num, longest+1)); 
+		System.out.println(String.format("The longest string of %s is %s long.", num, longest)); 
 		keyboard.close();
 	}
 	
@@ -41,7 +41,7 @@ public class LongestSequence {
 		}
 		
 		if (!isin) {
-			return -1; 
+			return 0; 
 		}
 		
 		for(int i = 1; i<c.length; i++) {
@@ -57,7 +57,7 @@ public class LongestSequence {
 			
 		}
 		
-		return sequences.max(); 
+		return sequences.max()+1; 
 	}
 	
 	public static int randomInt(int lower, int upper) {

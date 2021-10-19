@@ -153,6 +153,9 @@ public class PyList{
 	}
 	
 	public double index(int a) {
+		if(a<0) {
+			return list[list.length+a]; 
+		}
 		return list[a]; 
 	}
 	
