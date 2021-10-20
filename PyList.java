@@ -10,6 +10,10 @@ package main;
 public class PyList{
 	private static double[] list; 
 	
+	public PyList() {
+		list = new double[0]; 
+	}
+	
 	public PyList(int size) {
 		if (size < 0)
             throw new IllegalArgumentException("Illegal Capacity: "+ size);

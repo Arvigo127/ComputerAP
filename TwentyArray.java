@@ -79,8 +79,8 @@ public class TwentyArray {
 		boolean prime = true; 
 		for (int divisor = 2; divisor <= sqrt; divisor++) {
 			if((i%divisor) == 0 ) {
-				prime = false;
-				break; 
+				return false;
+				 
 			}
 		}
 

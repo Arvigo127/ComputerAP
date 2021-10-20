@@ -10,7 +10,7 @@ public class LongestSequence {
 
 		
 		//int[] sequence = new int[20]; 
-		int[] sequence = {13, 5, 3, 3, 15, 3, 3, 3, 14, 3, 3, 3, 3, 8, 7, 9, 14, 16, 8, 17};
+		int[] sequence = {13, 5, 3, 3, 15, 3, 3, 3, 14, 3, 3, 3, 3, 8, 7, 9, 3, 3, 8, 17};
 		//for(int i = 0; i<sequence.length; i++) {
 		//	sequence[i] = randomInt(0,20); 
 		//}
