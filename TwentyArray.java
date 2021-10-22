@@ -25,6 +25,7 @@ public class TwentyArray {
 		
 		System.out.println(String.format("Max %s at index %s", sortMax(myArrary)[0], sortMax(myArrary)[1])); 
 		System.out.println(String.format("Min %s at index %s", sortMin(myArrary)[0], sortMin(myArrary)[1])); 
+		System.out.println(findMinIndex(myArrary)); 
 		
 		for (int i : myArrary) {
 			if (isPrime(i)) {
@@ -71,6 +72,19 @@ public class TwentyArray {
 	//O(1)
 	public static int randomInt(int lower, int upper) {
 		return (int) ((Math.random() * (upper - lower+1)) + lower);
+	}
+	
+	public static int findMinIndex(int[] group) {
+ 
+		int minIndex=0; 
+		
+		for(int i = 0; i<group.length; i++) {
+			if(group[i] < group[minIndex]) {
+				minIndex = i; 
+			}
+		}
+		
+		return minIndex; 
 	}
 	
 	//O(n)

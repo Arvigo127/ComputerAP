@@ -20,8 +20,8 @@ public class ReverseArray {
 		return (int) ((Math.random() * (upper - lower+1)) + lower);
 	}
 	
-	public static <T> T[] reverseArray(T[] input) {
-		T[] result = (T[]) new Object[input.length];
+	public static int[] reverseArray(int[] input) {
+		int[] result = new int[input.length]; 
 		int tmpAssignPointer = 0; 
 		
 		for(int i = input.length-1; i>=0; i--) {
