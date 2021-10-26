@@ -7,13 +7,11 @@ import java.util.Scanner;
 public class LongestSequence {
 	public static void main(String[] args) {
 		Scanner keyboard = new Scanner(System.in);
-
 		
-		//int[] sequence = new int[20]; 
-		int[] sequence = {13, 5, 3, 3, 15, 3, 3, 3, 14, 3, 3, 3, 3, 8, 7, 9, 3, 3, 8, 17};
-		//for(int i = 0; i<sequence.length; i++) {
-		//	sequence[i] = randomInt(0,20); 
-		//}
+		int[] sequence = new int[20]; 
+		for(int i = 0; i<sequence.length; i++) {
+			sequence[i] = randomInt(0,20); 
+		}
 		
 		System.out.println(Arrays.toString(sequence)); 
 		
@@ -27,7 +25,7 @@ public class LongestSequence {
 		keyboard.close();
 	}
 	
-	public static double seqLength(int[] c, int num) {
+	public static int seqLength(int[] c, int num) {
 
 		boolean isin = false;
 		int sequence = 0; 
@@ -57,7 +55,7 @@ public class LongestSequence {
 			
 		}
 		
-		return sequences.max()+1; 
+		return (int) sequences.max()+1; 
 	}
 	
 	public static int randomInt(int lower, int upper) {
