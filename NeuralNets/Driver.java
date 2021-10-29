@@ -1,4 +1,4 @@
-package main;
+package main.NeuralNets;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class Driver {
 		
 		List<Double>output;
 		
-		nn.fit(X, Y, 10000);
+		nn.fit(X, Y, 100000);
 		double [][] input = {
 				{0,0},{0,1},{1,0},{1,1}	
 		};
