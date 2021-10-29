@@ -85,7 +85,7 @@ public class NeuralNetwork {
 		Matrix wh2o_T = Matrix.transpose(weights_h2o);
 		Matrix hidden2_errors = Matrix.multiply(wh2o_T, error); 
 		
-		Matrix h1h2_gradient = hidden2_errors.dsigmoid(); 
+		Matrix h1h2_gradient = hidden2.dsigmoid(); 
 		h1h2_gradient.multiply(hidden2_errors); 
 		h1h2_gradient.multiply(l_rate); 
 		
@@ -98,7 +98,7 @@ public class NeuralNetwork {
 		Matrix wh1h2_T = Matrix.transpose(weights_h1h2);
 		Matrix hidden1_errors = Matrix.multiply(wh1h2_T, hidden2_errors);
 		
-		Matrix h1_gradient = hidden1_errors.dsigmoid();
+		Matrix h1_gradient = hidden1.dsigmoid();
 		h1_gradient.multiply(hidden1_errors);
 		h1_gradient.multiply(l_rate);
 		
