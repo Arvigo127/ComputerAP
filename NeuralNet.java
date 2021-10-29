@@ -42,9 +42,12 @@ public class NeuralNet {
 		
 	}
 	
+	public double sigmoid_prime(double input) {
+		return input*(1-input);
+	}
+	
 	public double[] feedForward(double[] inputArray) {
 		double[] input = inputArray; 
-		double[] firstLayerActivations = new double[hiddenLayerOne.length]; int fLA_counter = 0; 
 		
 		for(int neuron = 0; neuron<hiddenLayerOne.length; neuron++) {
 			double sum = hiddenLayerOne[neuron][hiddenLayerOne[0].length-2];
@@ -52,37 +55,38 @@ public class NeuralNet {
 				sum += hiddenLayerOne[neuron][weight]*input[weight]; 
 			}
 			
-			firstLayerActivations[fLA_counter++] = activation(sum); 
+			hiddenLayerOne[neuron][hiddenLayerOne[0].length-1] = activation(sum); 
 			
 			
 		}
 		
-		double[] secondLayerActivations = new double[hiddenLayerTwo.length]; int sLA_counter = 0; 
 		
 		for(int neuron = 0; neuron<hiddenLayerTwo.length; neuron++) {
 			double sum = hiddenLayerTwo[neuron][hiddenLayerTwo[0].length-2];
 			for(int weight = 0; weight < hiddenLayerTwo[0].length-2; weight++) {
-				sum += hiddenLayerTwo[neuron][weight]*firstLayerActivations[weight]; 
+				sum += hiddenLayerTwo[neuron][weight]*hiddenLayerOne[weight][hiddenLayerOne[0].length-1]; 
 			}
 			
-			secondLayerActivations[sLA_counter++] = activation(sum); 
+			hiddenLayerTwo[neuron][hiddenLayerTwo[0].length-1] = activation(sum); 
 			
 			
 		}
 		
-		double[] outputLayerActivations = new double[outputLayer.length]; int oLA_counter = 0; 
+		double[] outputLayerActivations = new double[outputLayer.length]; 
 		
 		for(int neuron = 0; neuron<outputLayer.length; neuron++) {
 			double sum = outputLayer[neuron][outputLayer[0].length-2];
 			for(int weight = 0; weight < outputLayer[0].length-2; weight++) {
-				sum += outputLayer[neuron][weight]*secondLayerActivations[weight]; 
+				sum += outputLayer[neuron][weight]*hiddenLayerTwo[weight][hiddenLayerTwo[0].length-1]; 
 			}
 			
-			outputLayerActivations[oLA_counter++] = activation(sum); 
-			
+			outputLayer[neuron][outputLayer[0].length-1] = activation(sum);			
 			
 		}
 		
+		for(int i = 0; i<outputLayer.length; i++) {
+			outputLayerActivations[i] = outputLayer[i][outputLayer[0].length-1];
+		}
 		return outputLayerActivations;
 		
 	}
@@ -114,15 +118,19 @@ public class NeuralNet {
 			System.out.println("Size of input array out of bounds!");
 			return 0; 
 		}
-		double[] inputData = Arrays.copyOfRange(x, 0, inputLayer.length-1);
+		double[] inputData = Arrays.copyOfRange(x, 0, inputLayer.length);
+		System.out.println(Arrays.toString(inputData));
 		
 		double[] result = feedForward(inputData);
 		
-		double[] dataResults = Arrays.copyOfRange(x, inputLayer.length, x.length-1);
+		
+		double[] dataResults = Arrays.copyOfRange(x, inputLayer.length, x.length);
+		
+		System.out.println(String.format("result data of %s, dataResults of %s", Arrays.toString(result), Arrays.toString(dataResults)));
 		
 		double error = 0; 
 		
-		for(int i = 0; i>result.length; i++) {
+		for(int i = 0; i<result.length; i++) {
 			error += result[i]/dataResults[i];
 		}
 		
@@ -131,15 +139,35 @@ public class NeuralNet {
 		
 	}
 	
+	public void backpropagate(double[][] inputData, int learningRate, int iterations) {
+		for(int i = 1; i<=iterations; i++) { 		
+			System.out.println(String.format("Iteration %s", i));
+			for(int dataRow = 0; dataRow<inputData.length; dataRow++) {
+				 System.out.println(Arrays.toString(inputData[dataRow]));
+				 
+			}
+		}
+	}
+	
 	public static void main(String[] args) {
 		NeuralNet nn = new NeuralNet(2, 4, 4, 1); 
 		
-		nn.print();
+		//nn.print();
 		
-		double[] inputs = {0,1};
+		double[] inputs = {0,1,0};
 		double[] result = nn.feedForward(inputs);
 		
+		nn.print();
+		
 		System.out.println(Arrays.toString(result));
+		
+		double[] testData = {0,1,1};
+		
+		System.out.println(nn.testError(testData));
+		
+		double[][] data = {{1,0,1},{0,0,0},{1,1,0},{0,1,1}};
+		
+		nn.backpropagate(data, 4, 5);
 	}
 
 }
