@@ -4,32 +4,38 @@ import java.util.List;
 
 public class NeuralNetwork {
 	
-	Matrix weights_ih,weights_ho , bias_h,bias_o;	
+	Matrix weights_ih1, weights_h1h2, weights_h2o , bias_h1, bias_h2, bias_o;	
 	double l_rate;
 	
-	public NeuralNetwork(int i,int h,int o, double learning_rate) {
-		weights_ih = new Matrix(h,i);
-		weights_ho = new Matrix(o,h);
+	public NeuralNetwork(int i,int h1, int h2, int o, double learning_rate) {
+		weights_ih1 = new Matrix(h1,i);
+		weights_h1h2 = new Matrix(h2, h1);
+		weights_h2o = new Matrix(o,h2);
 		
 		l_rate = learning_rate;
 		
-		bias_h= new Matrix(h,1);
+		bias_h1= new Matrix(h1,1);
+		bias_h2= new Matrix(h2, 1); 
 		bias_o= new Matrix(o,1);
 		
 	}
 	
-	public List<Double> predict(double[] X)
+	public Matrix predict(double[] X)
 	{
 		Matrix input = Matrix.fromArray(X);
-		Matrix hidden = Matrix.multiply(weights_ih, input);
-		hidden.add(bias_h);
-		hidden.sigmoid();
+		Matrix hidden1 = Matrix.multiply(weights_ih1, input);
+		hidden1.add(bias_h1);
+		hidden1.sigmoid();
 		
-		Matrix output = Matrix.multiply(weights_ho,hidden);
+		Matrix hidden2 = Matrix.multiply(weights_h1h2, hidden1);
+		hidden2.add(bias_h2);
+		hidden2.sigmoid();
+		
+		Matrix output = Matrix.multiply(weights_h2o,hidden2);
 		output.add(bias_o);
 		output.sigmoid();
 		
-		return output.toArray();
+		return output;
 	}
 	
 	
@@ -45,11 +51,15 @@ public class NeuralNetwork {
 	public void train(double [] X,double [] Y)
 	{
 		Matrix input = Matrix.fromArray(X);
-		Matrix hidden = Matrix.multiply(weights_ih, input);
-		hidden.add(bias_h);
-		hidden.sigmoid();
+		Matrix hidden1 = Matrix.multiply(weights_ih1, input);
+		hidden1.add(bias_h1);
+		hidden1.sigmoid();
 		
-		Matrix output = Matrix.multiply(weights_ho,hidden);
+		Matrix hidden2 = Matrix.multiply(weights_h1h2, hidden1);
+		hidden2.add(bias_h2);
+		hidden2.sigmoid();
+		
+		Matrix output = Matrix.multiply(weights_h2o,hidden2);
 		output.add(bias_o);
 		output.sigmoid();
 		
@@ -65,25 +75,38 @@ public class NeuralNetwork {
 		gradient.multiply(l_rate);
 		
 		//transpose to get gradient matrix that can be applied to weights
-		Matrix hidden_T = Matrix.transpose(hidden);
-		Matrix who_delta =  Matrix.multiply(gradient, hidden_T);
+		Matrix hidden2_T = Matrix.transpose(hidden2);
+		Matrix wh2o_delta =  Matrix.multiply(gradient, hidden2_T);
 		
 		//applies proper gradients
-		weights_ho.add(who_delta);
+		weights_h2o.add(wh2o_delta);
 		bias_o.add(gradient);
 		
-		Matrix who_T = Matrix.transpose(weights_ho);
-		Matrix hidden_errors = Matrix.multiply(who_T, error);
+		Matrix wh2o_T = Matrix.transpose(weights_h2o);
+		Matrix hidden2_errors = Matrix.multiply(wh2o_T, error); 
 		
-		Matrix h_gradient = hidden.dsigmoid();
-		h_gradient.multiply(hidden_errors);
-		h_gradient.multiply(l_rate);
+		Matrix h1h2_gradient = hidden2_errors.dsigmoid(); 
+		h1h2_gradient.multiply(hidden2_errors); 
+		h1h2_gradient.multiply(l_rate); 
+		
+		Matrix h1_T = Matrix.transpose(hidden1);
+		Matrix wh1h2_delta = Matrix.multiply(h1h2_gradient, h1_T);
+		
+		weights_h1h2.add(wh1h2_delta);
+		bias_h2.add(h1h2_gradient);
+		
+		Matrix wh1h2_T = Matrix.transpose(weights_h1h2);
+		Matrix hidden1_errors = Matrix.multiply(wh1h2_T, hidden2_errors);
+		
+		Matrix h1_gradient = hidden1_errors.dsigmoid();
+		h1_gradient.multiply(hidden1_errors);
+		h1_gradient.multiply(l_rate);
 		
 		Matrix i_T = Matrix.transpose(input);
-		Matrix wih_delta = Matrix.multiply(h_gradient, i_T);
+		Matrix wih1_delta = Matrix.multiply(h1_gradient, i_T);
 		
-		weights_ih.add(wih_delta);
-		bias_h.add(h_gradient);
+		weights_ih1.add(wih1_delta);
+		bias_h1.add(h1_gradient);
 		
 	}
 

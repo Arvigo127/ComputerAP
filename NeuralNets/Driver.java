@@ -1,5 +1,6 @@
 package main.NeuralNets;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Driver {
@@ -16,10 +17,10 @@ public class Driver {
 
 	public static void main(String[] args) {
 		
-		NeuralNetwork nn = new NeuralNetwork(2,4,2, 0.05);
+		NeuralNetwork nn = new NeuralNetwork(2,4,4,2, 0.05);
 		
 		
-		List<Double>output;
+
 		
 		nn.fit(X, Y, 100000);
 		double [][] input = {
@@ -27,8 +28,9 @@ public class Driver {
 		};
 		for(double d[]:input)
 		{
-			output = nn.predict(d);
-			System.out.println(output.toString());
+			System.out.println(String.format("Prediction on input %s", Arrays.toString(d)));
+			nn.predict(d).print();
+			
 		}		
 
 	}
