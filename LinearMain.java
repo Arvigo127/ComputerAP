@@ -1,7 +1,5 @@
 package main;
 
-import main.NeuralNets.LinearRegression;
-
 public class LinearMain {
 	public static void main(String[] args) {
 		double[] x = {1, 2, 3};

@@ -1,4 +1,4 @@
-package main.NeuralNets;
+package main;
 
 public class LinearRegression {
 	static double[] x, y;

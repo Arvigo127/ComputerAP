@@ -1,4 +1,4 @@
-package main.NeuralNets;
+package main;
 
 import java.util.Arrays;
 
