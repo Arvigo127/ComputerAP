@@ -26,7 +26,7 @@ public class Driver {
 		System.out.println("Starting...");
 		ImageLoader il = new ImageLoader(62500,2);
 		
-		System.out.println("Populating data...");
+		System.out.println("Populating data array...");
 		il.populateData();
 		
 		NeuralNetwork nn = new NeuralNetwork();
@@ -60,43 +60,46 @@ public class Driver {
 				f.close();
 			} catch (IOException f) {
 				System.out.println("Error saving Neural Network");
+				System.exit(0);
 			}
 			
 		} catch (IOException e) {
 			System.out.println("Error initializing stream");
 			e.printStackTrace();
+			System.exit(0);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+			System.exit(0);
 		}
 		
 		double [][] input = il.getX();
 
 		//System.out.println(String.format("Prediction on input %s", Arrays.toString(input[i])));
 		
-		System.out.println("Predicting index: 1");
-		List<Double> output = nn.predict(input[1]).toArray();
-		System.out.println(parseInput(output));
-		System.out.println(output);
-		
-		System.out.println("Predicting index: 45");
-		output = nn.predict(input[45]).toArray();
-		System.out.println(parseInput(output));
-		System.out.println(output);
+		parsePrediction(nn, input, 0);
+		parsePrediction(nn, input, 45);
 		
 		
 
 	}
 	
-	public static String parseInput(List<Double> f) {
-		String result = "";
+	public static void parsePrediction(NeuralNetwork ninput, double[][] data, int index) {
+		System.out.println("Predicting index: " + index);
 		
-		if(f.get(0)>f.get(1)) {
-			result = "Dog";
+		long startTime = System.currentTimeMillis();
+		List<Double> output = ninput.predict(data[index]).toArray();
+		long endTime = System.currentTimeMillis();
+		System.out.println(String.format("Predicted in %s milliseconds", endTime-startTime));
+		
+		if(output.get(0)>output.get(1)) {
+			System.out.println(String.format("Dog (%.2f%%)", output.get(0)*100));
 		} else {
-			result = "Cat";
+			System.out.println(String.format("Cat (%.2f%%)", output.get(1)*100));
 		}
 		
-		return result;
+		
 	}
+	
+	
 
 }
