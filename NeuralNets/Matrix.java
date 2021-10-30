@@ -1,9 +1,14 @@
 package main.NeuralNets;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-class Matrix {
+class Matrix implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	double [][]data;
 	int rows,cols;
 	

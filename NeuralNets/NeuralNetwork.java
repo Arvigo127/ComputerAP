@@ -1,11 +1,18 @@
 package main.NeuralNets;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class NeuralNetwork {
+
+public class NeuralNetwork implements Serializable{
 	
+
+	private static final long serialVersionUID = 1L;
 	Matrix weights_ih1, weights_h1h2, weights_h2o , bias_h1, bias_h2, bias_o;	
 	double l_rate;
+	
+	public NeuralNetwork() {
+		
+	}
 	
 	public NeuralNetwork(int i,int h1, int h2, int o, double learning_rate) {
 		weights_ih1 = new Matrix(h1,i);
@@ -43,6 +50,9 @@ public class NeuralNetwork {
 	{
 		for(int i=0;i<epochs;i++)
 		{	
+			if(i%500==0) {
+				System.out.println("   Iteration: " + i);
+			}
 			int sampleN =  (int)(Math.random() * X.length );
 			this.train(X[sampleN], Y[sampleN]);
 		}
