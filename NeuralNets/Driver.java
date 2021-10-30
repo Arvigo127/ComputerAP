@@ -77,7 +77,7 @@ public class Driver {
 		//System.out.println(String.format("Prediction on input %s", Arrays.toString(input[i])));
 		
 		parsePrediction(nn, input, 0);
-		parsePrediction(nn, input, 45);
+		parsePrediction(nn, input, 29);
 		
 		
 
