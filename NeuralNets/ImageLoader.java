@@ -20,7 +20,7 @@ public class ImageLoader {
 		for(int dogCounter = 0; dogCounter<30; dogCounter++) {
 			BufferedImage img = null;
 			try {
-			    img = ImageIO.read(new File("src\\main\\NeuralNets\\data\\dog." + String.valueOf(dogCounter) + ".jpg"));
+			    img = ImageIO.read(new File("src/main/NeuralNets/data/dog." + String.valueOf(dogCounter) + ".jpg"));
 			} catch (IOException e) {
 			} 
 			
@@ -49,7 +49,7 @@ public class ImageLoader {
 		for(int dogCounter = 0; dogCounter<30; dogCounter++) {
 			BufferedImage img = null;
 			try {
-			    img = ImageIO.read(new File("src\\main\\NeuralNets\\data\\cat." + String.valueOf(dogCounter) + ".jpg"));
+			    img = ImageIO.read(new File("src/main/NeuralNets/data/cat." + String.valueOf(dogCounter) + ".jpg"));
 			} catch (IOException e) {
 			} 
 			

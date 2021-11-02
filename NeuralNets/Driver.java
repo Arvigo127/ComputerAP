@@ -33,7 +33,7 @@ public class Driver {
 		
 		System.out.println("Scanning for pre-existing Neural Network...");
 		try {
-			FileInputStream fi = new FileInputStream(new File("src\\main\\NeuralNets\\data\\nn.txt"));
+			FileInputStream fi = new FileInputStream(new File("src/main/NeuralNets/data/nn.txt"));
 			ObjectInputStream oi = new ObjectInputStream(fi);
 			
 			nn = (NeuralNetwork) oi.readObject();
@@ -50,7 +50,7 @@ public class Driver {
 			System.out.println("Done! Saving Neural Network");
 			
 			try {
-				FileOutputStream f = new FileOutputStream(new File("src\\main\\NeuralNets\\data\\nn.txt"));
+				FileOutputStream f = new FileOutputStream(new File("src/main/NeuralNets/data/nn.txt"));
 				ObjectOutputStream o = new ObjectOutputStream(f);
 	
 				// Write objects to file
@@ -76,7 +76,7 @@ public class Driver {
 
 		//System.out.println(String.format("Prediction on input %s", Arrays.toString(input[i])));
 		
-		parsePrediction(nn, input, 0);
+		parsePrediction(nn, input, 45);
 		parsePrediction(nn, input, 29);
 		
 		
