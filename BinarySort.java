@@ -3,7 +3,7 @@ package main;
 public class BinarySort {
 	public static void main(String[] args) {
 		int[] array = {3,4,6,7,8,9,10,11,12,14,15,66};
-		int targetIndex = binarySearch(array, 4);
+		int targetIndex = binarySearch(array, 15);
 		
 		System.out.println("Found target at index: " + targetIndex);
 	}
@@ -14,10 +14,12 @@ public class BinarySort {
 		int mid = (left+right)/2;
 		
 		while(left <= mid && mid <= right) {
-			drawBinarySearch(left, right, input.length);
+			
 			if(input[mid] == target) {
 				return mid;
 			}
+			
+			drawBinarySearch(left, right, input.length);
 			
 			if(input[mid] > target) {
 				right = mid-1; 
@@ -34,13 +36,13 @@ public class BinarySort {
 		int indexCounter = 0;
 		while(indexCounter<arrayLength) {
 			if(indexCounter == leftBound) {
-				System.out.print("[");
+				System.out.print("(");
 			} else if(indexCounter == (leftBound+rightBound)/2) {
 				System.out.print("|");
 			} else if(indexCounter == rightBound) {
-				System.out.print("]");
+				System.out.print(")");
 			} else {
-				System.out.print("*");
+				System.out.print("-");
 			}
 			
 			indexCounter++;
