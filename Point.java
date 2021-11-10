@@ -27,6 +27,10 @@ public class Point {
 	public void setY(int input) {
 		y = input; 
 	}
+	
+	public void display() {
+		System.out.println(String.format("(%s,%s)", x, y));
+	}
 			
 	
 	public double distance(Point input) {
