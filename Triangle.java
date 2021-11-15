@@ -25,6 +25,8 @@ public class Triangle {
 		C.display();
 	}
 	
+	
+	
 	public double area() {
 		double y_diff = 0;
 		double x_diff = 0; 
@@ -62,13 +64,21 @@ public class Triangle {
 	}
 	
 	public boolean isIsoceles() {
-		
+		boolean result = false;
+		if(A.distance(B) == A.distance(C) && A.distance(B) != B.distance(C)) {
+			return true; 
+		} else if(A.distance(B) == B.distance(C) && A.distance(B) != A.distance(C)) {
+			return true; 
+		} else if(C.distance(B) == A.distance(C) && A.distance(B) != B.distance(C)) {
+			return true; 
+		}
+		return result; 
 	}
 	
 	public static void main(String[] args) {
-		Triangle t = new Triangle(new Point(-1,0),
-								  new Point(50,0),
-								  new Point(-1,5));
+		Triangle t = new Triangle(new Point(0,0),
+								  new Point(3,4),
+								  new Point(3,-4));
 		
 
 		
@@ -77,6 +87,7 @@ public class Triangle {
 		System.out.println(t.isRight());
 		System.out.println(t.area()); 
 		System.out.println(t.isEquilateral());
+		System.out.println(t.isIsoceles());
 	}
 	
 	
