@@ -7,5 +7,7 @@ public class LinkedList {
 		myLinkedList = new Node[1]; 
 	}
 	
+
+	
 	
 }
