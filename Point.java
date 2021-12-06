@@ -31,6 +31,11 @@ public class Point {
 	public void display() {
 		System.out.println(String.format("(%s,%s)", x, y));
 	}
+	
+	public Point midpoint(Point a, Point b) {
+		Point midpoint = new Point((a.getX()-b.getX())/2, (a.getY()-b.getY())/2); 
+		return midpoint; 
+	}
 			
 	
 	public double distance(Point input) {

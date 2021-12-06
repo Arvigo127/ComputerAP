@@ -39,7 +39,7 @@ public class SelectionSort {
 	}
 	
 	public static void main(String[] args) {
-		int[] unsorted = {5, 6, 8, 5, 5, 1, -3, 2}; 
+		int[] unsorted = {5, 6, 8, 382, 14, -8, 1, -3, 2}; 
 		
 		int[] sorted = sortArray(unsorted); 
 		

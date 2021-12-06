@@ -6,7 +6,7 @@ public class Node {
 	
 	public Node() {
 		data = 0; 
-		
+		next = null; 
 	}
 	
 	public Node(int m, Node n) {
