@@ -94,6 +94,23 @@ public class LinkedList {
 		}
 	}
 	
+	public void insertInOrder(int value) {
+		Node snaker = head; 
+		Node backer = snaker; 
+		
+		while(snaker.getNext() != null) {
+			backer = snaker; 
+			snaker = snaker.getNext();
+			
+			if(backer.getData() <= value && value <= snaker.getData()) {
+				backer.setNext(new Node(value, snaker));
+				return; 
+			}
+		}
+		
+		snaker.setNext(new Node(value, null));
+	}
+	
 	public static void main(String[] args) {
 		LinkedList my_ll = new LinkedList(); 
 		
@@ -117,7 +134,12 @@ public class LinkedList {
 		my_ll.removeHead();
 		my_ll.print(); 
 		
+		System.out.println("Removing 5");
 		my_ll.removeByValue(5);
+		my_ll.print(); 
+
+		System.out.println("Inserting 3");
+		my_ll.insertInOrder(3);
 		my_ll.print(); 
 		
 		keyboard.close(); 
