@@ -130,9 +130,6 @@ public class LinkedList {
 		
 		my_ll.removeEnd();
 		my_ll.print(); 
-	
-		my_ll.removeHead();
-		my_ll.print(); 
 		
 		System.out.println("Removing 5");
 		my_ll.removeByValue(5);
